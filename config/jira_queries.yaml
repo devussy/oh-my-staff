@@ -1,0 +1,51 @@
+# JIRA Query Templates
+# These are reusable JQL query templates
+
+queries:
+  # Recent completed issues
+  recent_completed:
+    jql: "status = Done AND updated >= -7d ORDER BY updated DESC"
+    description: "Issues completed in the last 7 days"
+    max_results: 50
+
+  # Current sprint issues
+  current_sprint:
+    jql: "sprint in openSprints() AND project = {project_key} ORDER BY priority DESC"
+    description: "Issues in current sprint for a project"
+    max_results: 100
+
+  # High priority bugs
+  high_priority_bugs:
+    jql: "type = Bug AND priority in (Highest, High) AND status != Done ORDER BY created DESC"
+    description: "High priority bugs that are not done"
+    max_results: 50
+
+  # Blocked issues
+  blocked:
+    jql: "status = Blocked OR labels = blocked ORDER BY created ASC"
+    description: "All blocked issues"
+    max_results: 50
+
+  # Assigned to user
+  my_issues:
+    jql: "assignee = currentUser() AND status != Done ORDER BY priority DESC, updated DESC"
+    description: "Issues assigned to current user that are not done"
+    max_results: 50
+
+  # Unassigned issues
+  unassigned:
+    jql: "assignee is EMPTY AND status not in (Done, Closed) ORDER BY priority DESC"
+    description: "Unassigned open issues"
+    max_results: 50
+
+  # Recently updated
+  recent_activity:
+    jql: "updated >= -24h ORDER BY updated DESC"
+    description: "Issues with activity in the last 24 hours"
+    max_results: 100
+
+  # Weekly completed
+  weekly_completed:
+    jql: "status = Done AND resolved >= -7d ORDER BY resolved DESC"
+    description: "Issues completed in the last week"
+    max_results: 100

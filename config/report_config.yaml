@@ -1,0 +1,74 @@
+# Report Configuration
+
+weekly_report:
+  # Default team name
+  default_team: "Development Team"
+
+  # Data sources to include
+  include_sources:
+    - jira
+    - confluence
+    - slack
+
+  # JIRA settings
+  jira:
+    # JQL query for completed issues
+    completed_jql: "status = Done AND resolved >= -7d"
+    max_results: 100
+
+    # Fields to include
+    fields:
+      - summary
+      - status
+      - assignee
+      - priority
+      - created
+      - updated
+      - resolved
+
+  # Confluence settings
+  confluence:
+    # Spaces to monitor
+    spaces:
+      - TEAM
+      - DEV
+      - PROJ
+
+    # Days to look back for updates
+    days_back: 7
+
+  # Slack settings
+  slack:
+    # Channels to monitor
+    channels:
+      - dev-team
+      - general
+      - engineering
+
+    # Days to look back
+    days_back: 7
+
+  # Metrics to include
+  metrics:
+    - name: "Velocity"
+      enabled: true
+    - name: "Cycle Time"
+      enabled: true
+    - name: "Issue Count"
+      enabled: true
+
+  # Output settings
+  output:
+    format: "markdown"
+    include_toc: true
+    include_charts: false
+
+# Monthly report settings
+monthly_report:
+  enabled: false
+  # TODO: Configure monthly report settings
+
+# Ad-hoc report settings
+adhoc_report:
+  enabled: true
+  default_format: "markdown"

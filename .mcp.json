@@ -1,0 +1,57 @@
+{
+  "mcpServers": {
+    "jira": {
+      "command": "python",
+      "args": ["-m", "servers.jira_server.server"],
+      "env": {
+        "JIRA_URL": "${JIRA_URL}",
+        "JIRA_EMAIL": "${JIRA_EMAIL}",
+        "JIRA_API_TOKEN": "${JIRA_API_TOKEN}",
+        "CACHE_ENABLED": "${CACHE_ENABLED:-true}",
+        "CACHE_TTL_SECONDS": "${CACHE_TTL_SECONDS:-3600}",
+        "LOG_LEVEL": "${LOG_LEVEL:-INFO}"
+      }
+    },
+    "confluence": {
+      "command": "python",
+      "args": ["-m", "servers.confluence_server.server"],
+      "env": {
+        "CONFLUENCE_URL": "${CONFLUENCE_URL}",
+        "CONFLUENCE_EMAIL": "${CONFLUENCE_EMAIL}",
+        "CONFLUENCE_API_TOKEN": "${CONFLUENCE_API_TOKEN}",
+        "CACHE_ENABLED": "${CACHE_ENABLED:-true}",
+        "CACHE_TTL_SECONDS": "${CACHE_TTL_SECONDS:-1800}",
+        "LOG_LEVEL": "${LOG_LEVEL:-INFO}"
+      }
+    },
+    "slack": {
+      "command": "python",
+      "args": ["-m", "servers.slack_server.server"],
+      "env": {
+        "SLACK_BOT_TOKEN": "${SLACK_BOT_TOKEN}",
+        "SLACK_USER_TOKEN": "${SLACK_USER_TOKEN}",
+        "CACHE_ENABLED": "${CACHE_ENABLED:-true}",
+        "CACHE_TTL_SECONDS": "${CACHE_TTL_SECONDS:-900}",
+        "LOG_LEVEL": "${LOG_LEVEL:-INFO}"
+      }
+    },
+    "google-workspace": {
+      "command": "python",
+      "args": ["-m", "servers.google_workspace_server.server"],
+      "env": {
+        "GOOGLE_CREDENTIALS_FILE": "${GOOGLE_CREDENTIALS_FILE}",
+        "GOOGLE_TOKEN_FILE": "${GOOGLE_TOKEN_FILE}",
+        "CACHE_ENABLED": "${CACHE_ENABLED:-true}",
+        "CACHE_TTL_SECONDS": "${CACHE_TTL_SECONDS:-3600}",
+        "LOG_LEVEL": "${LOG_LEVEL:-INFO}"
+      }
+    },
+    "report": {
+      "command": "python",
+      "args": ["-m", "servers.report_server.server"],
+      "env": {
+        "LOG_LEVEL": "${LOG_LEVEL:-INFO}"
+      }
+    }
+  }
+}
